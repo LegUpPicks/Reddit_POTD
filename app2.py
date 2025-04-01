@@ -98,7 +98,7 @@ col1, col2 = st.columns(2)
 # Display stats table
 with col1:
     st.subheader("Win Percentage and Units Total")
-    st.dataframe(Star_stats.sort_values(by='Units', ascending=False))
+    st.dataframe(Star_stats.sort_values(by='Units', ascending=False),hide_index=True)
 
 with col2:
     current_date = pd.Timestamp.now()
@@ -111,7 +111,7 @@ with col2:
         Units=('Units_W_L', 'sum')
     ).reset_index()
     st.subheader("Win Percentage and Units Current Week")
-    st.dataframe(Star_stats_current_week.sort_values(by='Units', ascending=False))
+    st.dataframe(Star_stats_current_week.sort_values(by='Units', ascending=False),hide_index=True)
 
 # Cumulative Units Calculation
 df_cumulative = df.groupby('Date').agg({'Units_W_L': 'sum'}).cumsum().reset_index()
@@ -167,7 +167,7 @@ fig_weekly.update_layout(
 st.plotly_chart(fig_weekly, key='weekly_chart')
 st.plotly_chart(fig_daily, key='daily_chart')
 
-st.dataframe(df)
+st.dataframe(df,hide_index=True)
 
 # # Summary table
 # summary_table = df.groupby('Sport')['Units_W_L'].sum().reset_index()
