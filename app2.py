@@ -97,7 +97,7 @@ col1, col2 = st.columns(2)
 
 # Display stats table
 with col1:
-    st.subheader("Win Percentage and Units Total")
+    st.subheader("Overall")
     st.dataframe(Star_stats.sort_values(by='Units', ascending=False),hide_index=True)
 
 with col2:
@@ -110,7 +110,7 @@ with col2:
         WinPct=('Win_Loss_Push', lambda x: (x == 'w').sum() / len(x) * 100),
         Units=('Units_W_L', 'sum')
     ).reset_index()
-    st.subheader("Win Percentage and Units Current Week")
+    st.subheader("Current Week")
     st.dataframe(Star_stats_current_week.sort_values(by='Units', ascending=False),hide_index=True)
 
 # Cumulative Units Calculation
