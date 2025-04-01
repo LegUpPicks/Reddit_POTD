@@ -14,7 +14,7 @@ conn = st.connection("gsheets", type=GSheetsConnection)
 url_all = "https://docs.google.com/spreadsheets/d/17D-asrMUdDIvb2cjw1pTi8s56ns1YoheryyWPYQvylw/edit?usp=sharing"
 df_all = conn.read(spreadsheet=url_all, usecols=[0, 1, 2, 3, 4, 5, 6, 7,8,9])
 
-# Reset index (optional, if you want a clean index)
+
 df = df_all.reset_index(drop=True)
 
 option = st.sidebar.radio(
@@ -29,28 +29,24 @@ else:
 
 df['Date'] = pd.to_datetime(df['Date'])
 
-# Sidebar filters
+
 Stars = df['User'].unique()
 
-# Make sure 'Jarid' is in the list or array
 selected_Star = st.sidebar.selectbox(
     'Select User', 
     options=['All'] + list(Stars)  # 'All' is always the first element
 )
 
-# Filter by Star
+
 if selected_Star != 'All':
     df = df[df['User'] == selected_Star]
 
-# Sidebar: Filter by Sport
 sports = df['Sport'].unique()
 selected_sport = st.sidebar.selectbox('Select Sport', options=['All'] + list(sports))
 
-# Filter by sport
 if selected_sport != 'All':
     df = df[df['Sport'] == selected_sport]
 
-# Date filter
 date_range = st.sidebar.date_input("Select Date Range", [df['Date'].min(), df['Date'].max()])
 
 if len(date_range) == 2:
@@ -99,7 +95,7 @@ Star_stats['Units'] = Star_stats['Units'].round(2)
 
 col1, col2 = st.columns(2)
 
-# Display Star-wise stats table
+# Display stats table
 with col1:
     st.subheader("Win Percentage and Units Total")
     st.dataframe(Star_stats.sort_values(by='Units', ascending=False))
