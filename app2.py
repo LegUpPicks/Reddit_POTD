@@ -171,6 +171,8 @@ fig_weekly.update_layout(
 st.plotly_chart(fig_weekly, key='weekly_chart')
 st.plotly_chart(fig_daily, key='daily_chart')
 
+st.dataframe(df)
+
 # # Summary table
 # summary_table = df.groupby('Sport')['Units_W_L'].sum().reset_index()
 # summary_table.rename(columns={'Units_W_L': 'Units'}, inplace=True)
