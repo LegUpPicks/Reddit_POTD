@@ -1,0 +1,7 @@
+streamlit
+pandas
+gspread
+plotly
+matplotlib
+streamlit-calendar
+st-gsheets-connection
