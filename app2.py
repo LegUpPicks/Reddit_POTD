@@ -19,7 +19,7 @@ df = df_all.reset_index(drop=True)
 
 option = st.sidebar.radio(
     'Choose to view only POTD or All Plays',
-    ('POTD', 'All Picks')
+    ('All Picks', 'POTD')
 )
 
 if option == 'POTD':
